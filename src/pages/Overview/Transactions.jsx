@@ -10,15 +10,13 @@ const Transactions = () => {
         <span className="inline-block px-4 py-2 m-4 font-bold bg-gray-300 rounded-lg">Groceries</span>
       </div>
       <div className="overflow-y-scroll">
-        <Transaction description="Chili's" category="Groceries" date="April 16th, 2023" amount={34} />
-        <Transaction description="Walmart" category="Groceries" date="April 16th, 2023" amount={34} />
-        <Transaction description="Target" category="Groceries" date="April 16th, 2023" amount={34} />
-        <Transaction description="Red Robin" category="Groceries" date="April 16th, 2023" amount={34} />
-        <Transaction description="Chili's" category="Groceries" date="April 16th, 2023" amount={34} />
-        <Transaction description="Chili's" category="Groceries" date="April 16th, 2023" amount={34} />
-        <Transaction description="Chili's" category="Groceries" date="April 16th, 2023" amount={34} />
-        <Transaction description="Chili's" category="Groceries" date="April 16th, 2023" amount={34} />
-        <Transaction description="Chili's" category="Groceries" date="April 16th, 2023" amount={34} />
+        <Transaction description="Aldi" category="Groceries" date="April 16th, 2023" amount={34} />
+        <Transaction description="Water" category="Utilities" date="April 16th, 2023" amount={34} />
+        <Transaction description="Housing" category="Rent" date="April 16th, 2023" amount={34} />
+        <Transaction description="Aldi" category="Groceries" date="April 16th, 2023" amount={34} />
+        <Transaction description="Roommate" category="Rent" date="April 16th, 2023" amount={34} />
+        <Transaction description="Whole foods" category="Groceries" date="April 16th, 2023" amount={34} />
+        <Transaction description="Repairs" category="Transportation" date="April 16th, 2023" amount={34} />
       </div>
     </div>
   );
