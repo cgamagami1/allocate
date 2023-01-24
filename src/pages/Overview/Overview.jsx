@@ -1,7 +1,12 @@
+import Transactions from "./Transactions";
+import Navigation from "../../components/Navigation";
 
 const Overview = () => {
   return (
-    <div className="bg-red-400">Overview</div>
+    <div>
+      <Transactions />
+      <Navigation />
+    </div>
   );
 }
 
