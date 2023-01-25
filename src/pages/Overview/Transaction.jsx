@@ -3,19 +3,27 @@
 const categories = {
   Groceries: {
     icon: "shopping-cart",
-    color: "bg-category-green"
+    color: "bg-category-red"
   },
   Rent: {
     icon: "house",
-    color: "bg-category-dark-blue"
+    color: "bg-category-blue"
   },
   Utilities: {
-    icon: "droplet",
-    color: "bg-category-teal"
+    icon: "bolt",
+    color: "bg-category-orange"
   },
   Transportation: {
     icon: "car",
-    color: "bg-category-blue"
+    color: "bg-category-purple"
+  },
+  Leisure: {
+    icon: "smiley",
+    color: "bg-category-violet"
+  },
+  Misc: {
+    icon: "grid",
+    color: "bg-category-magenta"
   },
 };
 
