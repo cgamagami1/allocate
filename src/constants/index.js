@@ -2,104 +2,116 @@ export const transactions = [
   {
     id: 0,
     description: "Aldi",
-    category: "Groceries",
+    categoryName: "Groceries",
     date: "April 16th, 2023",
     amount: 34,
   },
   {
     id: 1,
     description: "Electric",
-    category: "Utilities",
+    categoryName: "Utilities",
     date: "April 16th, 2023",
     amount: 34,
   },
   {
     id: 2,
     description: "Housing",
-    category: "Rent",
+    categoryName: "Rent",
     date: "April 16th, 2023",
     amount: 340,
   },
   {
     id: 3,
     description: "Repairs",
-    category: "Transportation",
+    categoryName: "Transportation",
     date: "April 16th, 2023",
     amount: 34,
   },
   {
     id: 4,
     description: "Steam Game",
-    category: "Leisure",
+    categoryName: "Leisure",
     date: "April 16th, 2023",
     amount: 34,
   },
   {
     id: 5,
     description: "Whole foods",
-    category: "Groceries",
+    categoryName: "Groceries",
     date: "April 16th, 2023",
     amount: 34,
   },
   {
     id: 6,
     description: "Movie",
-    category: "Misc",
+    categoryName: "Misc",
     date: "April 16th, 2023",
     amount: 34,
   },
   {
     id: 7,
     description: "Movie",
-    category: "Misc",
+    categoryName: "Misc",
     date: "April 16th, 2023",
     amount: 34,
   },
   {
     id: 8,
     description: "Movie",
-    category: "Misc",
+    categoryName: "Misc",
     date: "April 16th, 2023",
     amount: 34,
   },
   {
     id: 9,
     description: "Movie",
-    category: "Misc",
+    categoryName: "Misc",
     date: "April 16th, 2023",
     amount: 34,
   },
 ];
 
-export const categories = {
-  Groceries: {
+export const categories = [
+  {
+    id: 0,
+    name: "Groceries",
     icon: "shopping-cart",
     color: "bg-category-red",
     budget: 500
   },
-  Rent: {
+  {
+    id: 1,
+    name: "Rent",
     icon: "house",
     color: "bg-category-blue",
     budget: 500
   },
-  Utilities: {
+  {
+    id: 2,
+    name: "Utilities",
     icon: "bolt",
     color: "bg-category-orange",
     budget: 500
   },
-  Transportation: {
+  {
+    id: 3,
+    name: "Transportation",
     icon: "car",
     color: "bg-category-purple",
     budget: 500
   },
-  Leisure: {
+  {
+    id: 4,
+    name: "Leisure",
     icon: "smiley",
     color: "bg-category-violet",
     budget: 500
   },
-  Misc: {
+  {
+    id: 5,
+    name: "Misc",
     icon: "grid",
     color: "bg-category-magenta",
     budget: 500
   },
-};
+];

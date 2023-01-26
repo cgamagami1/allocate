@@ -6,8 +6,8 @@ const Overview = () => {
     <div className="flex flex-col h-screen pb-16">
       <h2 className="px-4 pt-6 pb-2 text-3xl font-bold tracking-wide">Overview</h2>
       <div className="flex-grow px-8 overflow-y-scroll">
-        {Object.keys(categories).map(category => (
-          <CategoryBar category={category} />
+        {categories.map(category => (
+          <CategoryBar key={category.id} category={category} />
         ))}
       </div>
     </div>
