@@ -4,10 +4,12 @@ import Overview from "./pages/Overview/Overview";
 
 const App = () => {
   return (
-    <div>
+    <div className="flex">
       <Navigation />
-      <Overview />
-      {/* <Transactions /> */}
+      <div className="flex-grow">
+        <Overview />
+        {/* <Transactions /> */}
+      </div>
     </div>
   )
 }

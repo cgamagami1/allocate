@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily : {
-        "open-sans": ["Open Sans", "sans-serif"]
+        "open-sans": ["Open Sans", "sans-serif"],
       },
       colors: {
         "category-red": "#db3535",
@@ -22,6 +22,7 @@ module.exports = {
         "category-yellow": "#dedb47",
         "category-orange": "#f79e0f",
         "category-pink": "#f871a2",
+        "raisin-black": "#181D27",
       },
     },
   },
