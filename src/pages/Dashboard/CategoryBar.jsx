@@ -9,7 +9,7 @@ const CategoryBar = ({ category }) => {
   
   return (
     <div>
-      <h3 className="block my-2 font-bold text-gray-500">{name}</h3>
+      <h2 className="block my-2 font-bold text-gray-500">{name}</h2>
       <div className="flex items-center">
         <CategoryIcon category={category} />
         <div className="flex-grow h-8 p-1 ml-2 bg-gray-200 rounded-3xl">
