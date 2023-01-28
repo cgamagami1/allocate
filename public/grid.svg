@@ -3,9 +3,6 @@
         rect {
             fill: white;
         }
-        body.dark-theme {
-            fill: white;
-        }
     </style>
     <rect x="0" y="0" width="85" height="85" rx="20" ry="20"></rect>
     <rect x="115" y="115" width="85" height="85" rx="20" ry="20"></rect>
