@@ -7,7 +7,7 @@ const Transaction = ({ transaction }) => {
   return (
     <>
     <div className="py-4 border-t border-gray-300">
-      <span className="block mb-2 text-gray-700">{date}</span>
+      <span className="block mb-2 font-bold text-gray-500">{date}</span>
 
       <div className="flex items-center justify-between">
         <div className="flex items-center">
