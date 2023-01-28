@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
   return (
@@ -7,19 +8,19 @@ const Navigation = () => {
       <ul className="text-xl border-t border-gray-400">
         <li className="flex items-center mt-6">
           <img className="w-6 mr-4" src="./gauge.svg" alt="dashboard icon" />
-          <span>Dashboard</span>
+          <Link className="hover:underline" to="/">Dashboard</Link>
         </li>
         <li className="flex items-center mt-6">
           <img className="w-6 mr-4" src="./transaction.svg" alt="transactions icon" />
-          <span>Transactions</span>
+          <Link className="hover:underline" to="/transactions">Transactions</Link>
         </li>
         <li className="flex items-center mt-6">
           <img className="w-6 mr-4" src="./newspaper.svg" alt="news icon" />
-          <span>News</span>
+          <Link className="hover:underline" to="/news">News</Link>
         </li>
         <li className="flex items-center mt-6">
           <img className="w-6 mr-4" src="./gear.svg" alt="settings icon" />
-          <span>Settings</span>
+          <Link className="hover:underline" to="/settings">Settings</Link>
         </li>
         <li className="flex items-center my-6">
           <img className="w-6 mr-4" src="./power-off.svg" alt="sign out icon" />
