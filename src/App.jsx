@@ -5,13 +5,12 @@ import { Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
-    <div className="flex h-screen">
-      <Navigation />
-      <Routes>
+    <Routes>
+      <Route to="/" element={<Navigation />}>
         <Route index element={<Dashboard />} />
         <Route path="/transactions" element={<TransactionsPage />} />
-      </Routes>
-    </div>
+      </Route>
+    </Routes>
   )
 }
 
