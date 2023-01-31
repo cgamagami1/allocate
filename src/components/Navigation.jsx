@@ -9,6 +9,7 @@ import transactionIcon from "../assets/transaction.svg";
 import menuIcon from "../assets/menu.svg";
 import closeIcon from "../assets/close.svg";
 import logoGreyIcon from "../assets/logo-grey.png";
+import logoGreenIcon from "../assets/logo-green.png";
 
 const Navigation = () => {
   const [ isOpen, setIsOpen ] = useState(false);
@@ -19,7 +20,7 @@ const Navigation = () => {
 
   return (
     <div className="flex h-screen">
-      <div className="fixed z-10 flex justify-between w-full p-4 bg-gray-900 xl:hidden">
+      <div className="fixed z-10 flex justify-between w-full p-4 bg-gray-700 xl:hidden">
         <img className="h-6 cursor-pointer" src={isOpen ? closeIcon : menuIcon} alt="nav button" onClick={handleOnClick} />
         <img className="h-6" src={logoGreyIcon} alt="logo" />
       </div>
@@ -35,9 +36,7 @@ const Navigation = () => {
           <NavLinkItem icon={powerOffIcon} title="Sign Out" link="/signout" setIsOpen={setIsOpen} />
         </ul>
       </nav>
-      <div className="flex-grow xl:flex xl:justify-between xl:gap-16 xl:p-16 mt-14 xl:mt-0">
-        <Outlet />
-      </div>
+      <Outlet />
     </div>
   );
 }

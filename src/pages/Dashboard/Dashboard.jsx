@@ -1,16 +1,11 @@
-import Spending from "../../components/Spending";
-import Budget from "./Budget";
-import MonthlySpending from "./MonthlySpending";
+import SpendingCategories from "../../components/SpendingCategories";
+import Card from "../../components/Card";
 
 const Dashboard = () => {
   return (
-    <>
-      <Spending />
-      <div className="xl:flex xl:flex-col xl:gap-16">
-        <Budget />
-        <MonthlySpending />
-      </div>
-    </>
+    <Card title="Dashboard">
+      <SpendingCategories />
+    </Card>
   );
 }
 

@@ -2,7 +2,8 @@ import CategoryIcon from "../../components/CategoryIcon";
 import { categories } from "../../constants";
 
 const Transaction = ({ transaction }) => {
-  const { description, categoryName, date, amount } = transaction;
+  const { description, categoryId, date, amount } = transaction;
+  const category = categories.find(category => category.id === categoryId);
 
   return (
     <>
@@ -11,12 +12,12 @@ const Transaction = ({ transaction }) => {
 
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-          <CategoryIcon category={categories.find(category => category.name === categoryName)} />
+          <CategoryIcon category={category} />
 
           <div className="flex flex-col justify-between ml-8">
             <h2 className="text-xl font-bold">{description}</h2>
 
-            <span className="text-gray-500 ">{categoryName}</span>
+            <span className="text-gray-500 ">{category.name}</span>
           </div>
         </div>
         
