@@ -1,11 +1,14 @@
 import SpendingCategories from "../../components/SpendingCategories";
-import Card from "../../components/Card";
+import DoughnutChart from "./DoughnutChart";
+import HeaderBar from "../../components/HeaderBar";
 
 const Dashboard = () => {
   return (
-    <Card title="Dashboard">
+    <div className="flex-grow dashboard-grid">
+      <HeaderBar title="Dashboard" />
       <SpendingCategories />
-    </Card>
+      <DoughnutChart />
+    </div>
   );
 }
 

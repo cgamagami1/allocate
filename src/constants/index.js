@@ -76,42 +76,42 @@ export const categories = [
     id: 0,
     name: "Groceries",
     icon: "shopping-cart",
-    color: "bg-category-red",
+    color: "#db3535",
     budget: 500
   },
   {
     id: 1,
     name: "Rent",
     icon: "house",
-    color: "bg-category-blue",
+    color: "#3588db",
     budget: 500
   },
   {
     id: 2,
     name: "Utilities",
     icon: "bolt",
-    color: "bg-category-orange",
-    budget: 500
+    color: "#f79e0f",
+    budget: 700
   },
   {
     id: 3,
     name: "Transportation",
     icon: "car",
-    color: "bg-category-purple",
-    budget: 500
+    color: "#7571f8",
+    budget: 300
   },
   {
     id: 4,
     name: "Leisure",
     icon: "smiley",
-    color: "bg-category-violet",
-    budget: 500
+    color: "#bf35db",
+    budget: 200
   },
   {
     id: 5,
     name: "Misc",
     icon: "grid",
-    color: "bg-category-magenta",
+    color: "#c41667",
     budget: 500
   },
 ];

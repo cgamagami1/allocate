@@ -12,28 +12,18 @@ import logoGreyIcon from "../assets/logo-grey.png";
 import logoGreenIcon from "../assets/logo-green.png";
 
 const Navigation = () => {
-  const [ isOpen, setIsOpen ] = useState(false);
-
-  const handleOnClick = () => {
-    setIsOpen(prev => !prev);
-  }
-
   return (
     <div className="flex h-screen">
-      <div className="fixed z-10 flex justify-between w-full p-4 bg-gray-700 xl:hidden">
-        <img className="h-6 cursor-pointer" src={isOpen ? closeIcon : menuIcon} alt="nav button" onClick={handleOnClick} />
-        <img className="h-6" src={logoGreyIcon} alt="logo" />
-      </div>
-      <nav className={`transition-transform fixed xl:static h-screen p-10 font-bold text-gray-400 bg-raisin-black w-80 ${isOpen ? "" : "-translate-x-full" } xl:translate-x-0`}>
+      <nav className="h-screen p-10 font-bold text-gray-400 xl:static bg-raisin-black w-80">
         <img className="hidden mt-32 xl:block" src={logoGreyIcon} alt="logo" />
-        <h1 className="hidden mt-8 mb-16 text-3xl text-center xl:block">Hello, John</h1>
+        <h2 className="hidden mt-8 mb-16 text-3xl text-center xl:block">Hello, John</h2>
 
         <ul className="mt-16 text-3xl border-gray-400 xl:text-xl xl:border-t xl:mt-0">
-          <NavLinkItem icon={gaugeIcon} title="Dashboard" link="/" setIsOpen={setIsOpen} />
-          <NavLinkItem icon={transactionIcon} title="Transactions" link="/transactions" setIsOpen={setIsOpen} />
-          <NavLinkItem icon={newspaperIcon} title="News" link="/news" setIsOpen={setIsOpen} />
-          <NavLinkItem icon={gearIcon} title="Settings" link="/settings" setIsOpen={setIsOpen} />
-          <NavLinkItem icon={powerOffIcon} title="Sign Out" link="/signout" setIsOpen={setIsOpen} />
+          <NavLinkItem icon={gaugeIcon} title="Dashboard" link="/" />
+          <NavLinkItem icon={transactionIcon} title="Transactions" link="/transactions" />
+          <NavLinkItem icon={newspaperIcon} title="News" link="/news" />
+          <NavLinkItem icon={gearIcon} title="Settings" link="/settings" />
+          <NavLinkItem icon={powerOffIcon} title="Sign Out" link="/signout" />
         </ul>
       </nav>
       <Outlet />
