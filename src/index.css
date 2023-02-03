@@ -30,6 +30,12 @@
     .dashboard-grid {
         display: grid;
         grid-template-columns: 60% 40%;
-        grid-template-rows: 4rem 1fr;
+        grid-template-rows: 5rem 1fr;
+    }
+
+    .transactions-grid {
+        display: grid;
+        grid-template-columns: 60% 40%;
+        grid-template-rows: 5rem 5rem 1fr;
     }
 }

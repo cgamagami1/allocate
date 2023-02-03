@@ -4,7 +4,7 @@ import HeaderBar from "../../components/HeaderBar";
 
 const Dashboard = () => {
   return (
-    <div className="flex-grow dashboard-grid">
+    <div className="flex-grow px-16 dashboard-grid">
       <HeaderBar title="Dashboard" />
       <SpendingCategories />
       <DoughnutChart />

@@ -23,6 +23,8 @@ module.exports = {
         "category-orange": "#f79e0f",
         "category-pink": "#f871a2",
         "raisin-black": "#181D27",
+        "selected": "#9CE37D",
+        "selected-background": "#12151d",
       },
     },
   },

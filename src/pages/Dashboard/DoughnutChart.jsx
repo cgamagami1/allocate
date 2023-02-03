@@ -19,6 +19,11 @@ const DoughnutChart = () => {
     plugins: {
       legend: {
         position: "bottom",
+        labels: {
+          font: {
+            size: 16
+          }
+        }
       }
     }
   };

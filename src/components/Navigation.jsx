@@ -1,29 +1,37 @@
-import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import NavLinkItem from "./NavLinkItem";
-import gaugeIcon from "../assets/gauge.svg";
-import gearIcon from "../assets/gear.svg";
-import newspaperIcon from "../assets/newspaper.svg";
-import powerOffIcon from "../assets/power-off.svg";
-import transactionIcon from "../assets/transaction.svg";
-import menuIcon from "../assets/menu.svg";
-import closeIcon from "../assets/close.svg";
+import GaugeIcon from "./svgs/GaugeIcon";
+import TransactionIcon from "./svgs/TransactionIcon";
+import NewsIcon from "./svgs/NewsIcon";
+import GearIcon from "./svgs/GearIcon";
+import PowerOffIcon from "./svgs/PowerOffIcon";
 import logoGreyIcon from "../assets/logo-grey.png";
-import logoGreenIcon from "../assets/logo-green.png";
+import { useState } from "react";
 
 const Navigation = () => {
+  const [selectedItem, setSelectedItem] = useState("dashboard");
+
   return (
     <div className="flex h-screen">
-      <nav className="h-screen p-10 font-bold text-gray-400 xl:static bg-raisin-black w-80">
-        <img className="hidden mt-32 xl:block" src={logoGreyIcon} alt="logo" />
-        <h2 className="hidden mt-8 mb-16 text-3xl text-center xl:block">Hello, John</h2>
+      <nav className="h-screen py-10 font-bold text-gray-400 xl:static bg-raisin-black w-80">
+        <img className="hidden px-10 mt-32 xl:block" src={logoGreyIcon} alt="logo" />
+        <h2 className="hidden pt-8 pb-10 mx-10 mb-10 text-3xl text-center border-b border-gray-400 xl:block">Hello, John</h2>
 
-        <ul className="mt-16 text-3xl border-gray-400 xl:text-xl xl:border-t xl:mt-0">
-          <NavLinkItem icon={gaugeIcon} title="Dashboard" link="/" />
-          <NavLinkItem icon={transactionIcon} title="Transactions" link="/transactions" />
-          <NavLinkItem icon={newspaperIcon} title="News" link="/news" />
-          <NavLinkItem icon={gearIcon} title="Settings" link="/settings" />
-          <NavLinkItem icon={powerOffIcon} title="Sign Out" link="/signout" />
+        <ul className="text-xl">
+          <NavLinkItem icon={<GaugeIcon isSelected={"dashboard" === selectedItem} />} 
+            title="Dashboard" link="/" isSelected={"dashboard" === selectedItem} handleOnClick={() => setSelectedItem("dashboard")} />
+
+          <NavLinkItem icon={<TransactionIcon isSelected={"transactions" === selectedItem} />} 
+            title="Transactions" link="/transactions" isSelected={"transactions" === selectedItem} handleOnClick={() => setSelectedItem("transactions")} />
+
+          <NavLinkItem icon={<NewsIcon isSelected={"news" === selectedItem} />} 
+            title="News" link="/news" isSelected={"news" === selectedItem} handleOnClick={() => setSelectedItem("news")} />
+
+          <NavLinkItem icon={<GearIcon isSelected={"settings" === selectedItem} />} 
+            title="Settings" link="/settings" isSelected={"settings" === selectedItem} handleOnClick={() => setSelectedItem("settings")} />
+            
+          <NavLinkItem icon={<PowerOffIcon isSelected={"sign out" === selectedItem} />} 
+            title="Sign Out" link="/signout" isSelected={"sign out" === selectedItem} handleOnClick={() => setSelectedItem("sign out")} />
         </ul>
       </nav>
       <Outlet />
