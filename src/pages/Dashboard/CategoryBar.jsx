@@ -20,7 +20,7 @@ const CategoryBar = ({ category }) => {
           <div className="h-full transition-all duration-700 rounded-3xl" style={{ width: `${remainingPercentage}%`, backgroundColor: color }}></div>
         </div>
       </div>
-      <p className="text-sm text-right text-gray-500 xl:text-base"><span className="font-bold">{name}</span> | ${remaining} of ${budget} Left</p>
+      <p className="text-sm text-right text-gray-500 2xl:text-base"><span className="font-bold">{name}</span> | ${remaining} of ${budget} Left</p>
     </div>
   );
 }

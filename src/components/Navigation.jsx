@@ -12,12 +12,12 @@ const Navigation = () => {
   const [selectedItem, setSelectedItem] = useState("dashboard");
 
   return (
-    <div className="flex h-screen">
-      <nav className="h-screen py-10 font-bold text-gray-400 xl:static bg-raisin-black w-80">
-        <img className="hidden px-10 mt-32 xl:block" src={logoGreyIcon} alt="logo" />
+    <div className="flex h-screen pb-14 md:pb-0 md:pt-14 xl:pt-0">
+      <nav className="fixed bottom-0 z-30 flex items-center justify-between w-full font-bold text-gray-400 md:bottom-auto md:top-0 md:px-8 xl:p-0 xl:block xl:py-10 xl:h-screen bg-raisin-black xl:w-80 xl:static">
+        <img className="hidden h-8 md:block xl:px-10 xl:h-auto xl:mt-32" src={logoGreyIcon} alt="logo" />
         <h2 className="hidden pt-8 pb-10 mx-10 mb-10 text-3xl text-center border-b border-gray-400 xl:block">Hello, John</h2>
 
-        <ul className="text-xl">
+        <ul className="flex justify-around w-full text-xl md:justify-end xl:block md:w-auto">
           <NavLinkItem icon={<GaugeIcon isSelected={"dashboard" === selectedItem} />} 
             title="Dashboard" link="/" isSelected={"dashboard" === selectedItem} handleOnClick={() => setSelectedItem("dashboard")} />
 
