@@ -1,13 +1,15 @@
+import { useContext } from "react";
 import CategoryIcon from "../../components/CategoryIcon";
-import { categories } from "../../constants";
+import { BudgetContext } from "../../context/BudgetContext";
 
 const Transaction = ({ transaction }) => {
+  const { categories } = useContext(BudgetContext);
   const { description, categoryId, date, amount } = transaction;
   const category = categories.find(category => category.id === categoryId);
 
   return (
     <>
-    <div className="py-4 border-b border-gray-300">
+    <div className="py-4 border-b border-gray-300 tilt-animation">
       <span className="block mb-2 font-bold text-gray-500">{date}</span>
 
       <div className="flex items-center justify-between">

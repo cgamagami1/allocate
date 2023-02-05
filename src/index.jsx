@@ -1,13 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import { MenuProvider } from "./context/MenuContext";
+import { BudgetProvider } from "./context/BudgetContext";
 import App from "./App";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <MenuProvider>
+        <BudgetProvider>
+          <App />
+        </BudgetProvider>
+      </MenuProvider>
     </BrowserRouter>
   </React.StrictMode>,
 )

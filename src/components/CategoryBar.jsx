@@ -1,8 +1,9 @@
-import { transactions } from "../../constants";
-import CategoryIcon from "../../components/CategoryIcon";
-import { useEffect, useState } from "react";
+import CategoryIcon from "./CategoryIcon";
+import { useContext, useEffect, useState } from "react";
+import { BudgetContext } from "../context/BudgetContext";
 
 const CategoryBar = ({ category }) => {
+  const { transactions } = useContext(BudgetContext);
   const { id, name, color, budget } = category;
   const spent = transactions.reduce((acc, current) => current.categoryId === id ? acc + current.amount : acc, 0);
   const remaining = budget - spent;

@@ -6,18 +6,16 @@ import Menu from "./components/Menu";
 
 const App = () => {
   return (
-    <>
-      <Routes>
-        <Route element={<Menu />}>
-          <Route to="/" element={<Navigation />}>
-            <Route index element={<Dashboard />} />
-            <Route path="transactions" element={<Transactions />} />
-            <Route path="news" element={<>news</>} />
-            <Route path="settings" element={<>settings</>} />
-          </Route>
+    <Routes>
+      <Route element={<Menu />}>
+        <Route to="/" element={<Navigation />}>
+          <Route index element={<Dashboard />} />
+          <Route path="transactions" element={<Transactions />} />
+          <Route path="news" element={<>news</>} />
+          <Route path="settings" element={<>settings</>} />
         </Route>
-      </Routes>
-    </>
+      </Route>
+    </Routes>
   )
 }
 

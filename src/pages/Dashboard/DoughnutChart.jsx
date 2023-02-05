@@ -1,8 +1,11 @@
 import { Doughnut } from "react-chartjs-2";
 import 'chart.js/auto';
-import { categories } from "../../constants";
+import { useContext } from "react";
+import { BudgetContext } from "../../context/BudgetContext";
 
 const DoughnutChart = () => {
+  const { categories } = useContext(BudgetContext);
+
   const chartData = {
     labels: categories.map(category => category.name),
     datasets: [
