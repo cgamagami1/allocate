@@ -1,16 +1,44 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import CategoryIcon from "../../components/CategoryIcon";
 import { BudgetContext } from "../../context/BudgetContext";
+import closeIcon from "../../assets/close.svg";
+import { MenuContext } from "../../context/MenuContext";
 
 const Transaction = ({ transaction }) => {
-  const { categories } = useContext(BudgetContext);
+  const { categories, removeTransaction } = useContext(BudgetContext);
+  const { setCurrentMenu, setEditedItem } = useContext(MenuContext);
+  const [ripplePosition, setRipplePosition] = useState({ x: 0, y: 0 });
+  const [isRippleVisible, setIsRippleVisible] = useState(false);
   const { description, categoryId, date, amount } = transaction;
   const category = categories.find(category => category.id === categoryId);
 
+  const handleOnClick = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setRipplePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+
+    if (!isRippleVisible) {
+      setIsRippleVisible(true);
+      setTimeout(() => setIsRippleVisible(false), 500);
+    }
+
+    setEditedItem(transaction);
+    setCurrentMenu("transaction");
+  }
+
+  const handleOnRemove = (e) => {
+    e.stopPropagation();
+    removeTransaction(transaction);
+  }
+  
   return (
-    <>
-    <div className="py-4 border-b border-gray-300 tilt-animation">
-      <span className="block mb-2 font-bold text-gray-500">{date}</span>
+    <div className="relative py-4 overflow-hidden border-b border-gray-300 tilt-animation transaction hover:cursor-pointer" onClick={handleOnClick}>
+      <div className="flex items-start justify-between mb-2">
+        <span className="block font-bold text-gray-500">{date.toLocaleString({ weekday: "short", year: "numeric", month: "short", day: "numeric" })}</span>
+        <img className="hidden w-4 my-1 hover:cursor-pointer transaction-close-icon" src={closeIcon} alt="close icon" onClick={handleOnRemove} />
+      </div>
 
       <div className="flex items-center justify-between">
         <div className="flex items-center">
@@ -25,8 +53,10 @@ const Transaction = ({ transaction }) => {
         
         <span className="text-3xl font-light text-gray-700">-${amount}</span>
       </div>
+
+      {isRippleVisible && <span className="absolute bg-[#00000033] translate-x-[-50%] translate-y-[-50%] rounded-full ripple-animation" 
+        style={{ left: ripplePosition.x + "px", top: ripplePosition.y + "px" }}></span>}
     </div>
-    </>
   );
 }
 

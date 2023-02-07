@@ -7,13 +7,13 @@ export const MenuContext = createContext({
 
 export const MenuProvider = ({ children }) => {
   const [currentMenu, setCurrentMenu] = useState("none");
-  const [isEditing, setIsEditing] = useState(false);
+  const [editedItem, setEditedItem] = useState(null);
 
   const value = {
     currentMenu,
-    isEditing,
     setCurrentMenu,
-    setIsEditing,
+    editedItem,
+    setEditedItem,
   };
   
   return (
