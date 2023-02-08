@@ -3,27 +3,17 @@ import CategoryIcon from "../../components/CategoryIcon";
 import { BudgetContext } from "../../context/BudgetContext";
 import closeIcon from "../../assets/close.svg";
 import { MenuContext } from "../../context/MenuContext";
+import useRipple from "../../utils/useRipple";
 
 const Transaction = ({ transaction }) => {
   const { categories, removeTransaction } = useContext(BudgetContext);
   const { setCurrentMenu, setEditedItem } = useContext(MenuContext);
-  const [ripplePosition, setRipplePosition] = useState({ x: 0, y: 0 });
-  const [isRippleVisible, setIsRippleVisible] = useState(false);
+  const [isRippleVisible, ripplePosition, handleRipple] = useRipple();
   const { description, categoryId, date, amount } = transaction;
   const category = categories.find(category => category.id === categoryId);
 
   const handleOnClick = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setRipplePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    });
-
-    if (!isRippleVisible) {
-      setIsRippleVisible(true);
-      setTimeout(() => setIsRippleVisible(false), 500);
-    }
-
+    handleRipple(e);
     setEditedItem(transaction);
     setCurrentMenu("transaction");
   }

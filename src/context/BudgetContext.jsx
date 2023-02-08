@@ -1,6 +1,13 @@
 import { createContext, useState } from "react";
 import { DateTime } from "luxon";
 
+import shoppingCart from "../assets/shopping-cart.svg";
+import house from "../assets/house.svg";
+import grid from "../assets/grid.svg";
+import bolt from "../assets/bolt.svg";
+import smiley from "../assets/smiley.svg";
+import car from "../assets/car.svg";
+
 const addItemToList = (list, itemToAdd) => {
   const nextId = list.length;
 
@@ -97,42 +104,42 @@ export const BudgetProvider = ({ children }) => {
     {
       id: 0,
       name: "Groceries",
-      icon: "shopping-cart",
+      icon: shoppingCart,
       color: "#db3535",
       budget: 500
     },
     {
       id: 1,
       name: "Rent",
-      icon: "house",
+      icon: house,
       color: "#3588db",
       budget: 500
     },
     {
       id: 2,
       name: "Utilities",
-      icon: "bolt",
+      icon: bolt,
       color: "#f79e0f",
       budget: 700
     },
     {
       id: 3,
       name: "Transportation",
-      icon: "car",
+      icon: car,
       color: "#7571f8",
       budget: 300
     },
     {
       id: 4,
       name: "Leisure",
-      icon: "smiley",
+      icon: smiley,
       color: "#bf35db",
       budget: 200
     },
     {
       id: 5,
       name: "Misc",
-      icon: "grid",
+      icon: grid,
       color: "#c41667",
       budget: 500
     },
