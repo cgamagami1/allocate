@@ -24,10 +24,10 @@ const Transaction = ({ transaction }) => {
   }
   
   return (
-    <div className="relative py-4 overflow-hidden border-b border-gray-300 tilt-animation transaction hover:cursor-pointer" onClick={handleOnClick}>
+    <div className="relative py-4 overflow-hidden border-b border-gray-300 tilt-animation close-icon-container hover:cursor-pointer" onClick={handleOnClick}>
       <div className="flex items-start justify-between mb-2">
         <span className="block font-bold text-gray-500">{date.toLocaleString({ weekday: "short", year: "numeric", month: "short", day: "numeric" })}</span>
-        <img className="hidden w-4 my-1 hover:cursor-pointer transaction-close-icon" src={closeIcon} alt="close icon" onClick={handleOnRemove} />
+        <img className="hidden w-4 my-1 hover:cursor-pointer close-icon" src={closeIcon} alt="close icon" onClick={handleOnRemove} />
       </div>
 
       <div className="flex items-center justify-between">

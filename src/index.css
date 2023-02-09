@@ -27,7 +27,7 @@
         border: 3px solid #ffffff;
     }
     
-    .transaction:hover .transaction-close-icon {
+    .close-icon-container:hover .close-icon {
         display: block;
     }
 
@@ -35,6 +35,16 @@
         display: grid;
         grid-template-columns: 60% 40%;
         grid-template-rows: 5rem 1fr;
+    }
+
+    .page-grid-mobile {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 5rem 1fr;
+    }
+
+    .page-grid-mobile :nth-child(3) {
+        display: none;
     }
 
     .menu-shadow {

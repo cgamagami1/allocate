@@ -7,6 +7,7 @@ import grid from "../assets/grid.svg";
 import bolt from "../assets/bolt.svg";
 import smiley from "../assets/smiley.svg";
 import car from "../assets/car.svg";
+import question from "../assets/question.svg";
 
 const addItemToList = (list, itemToAdd) => {
   const nextId = list.length;
@@ -20,6 +21,15 @@ const editItemInList = (list, itemToEdit) => {
 
 const removeItemFromList = (list, itemToRemove) => {
   return list.filter(item => item.id !== itemToRemove.id);
+}
+
+const removeCategoryFromTransactions = (transactions, categoryToRemove) => {
+  return transactions.map(transaction => {
+    return { 
+      ...transaction, 
+      categoryId: categoryToRemove.id === transaction.categoryId ? -1 : transaction.categoryId
+    }
+  });
 }
 
 export const BudgetContext = createContext({
@@ -102,6 +112,13 @@ export const BudgetProvider = ({ children }) => {
   ]);
   const [categories, setCategories] = useState([
     {
+      id: -1,
+      name: "Uncategorized",
+      icon: question,
+      color: "#999999",
+      budget: 0,
+    },
+    {
       id: 0,
       name: "Groceries",
       icon: shoppingCart,
@@ -155,7 +172,10 @@ export const BudgetProvider = ({ children }) => {
 
   const editCategory = (categoryToEdit) => setCategories(editItemInList(categories, categoryToEdit));
 
-  const removeCategory = (categoryToRemove) => setCategories(removeItemFromList(categories, categoryToRemove));
+  const removeCategory = (categoryToRemove) => {
+    setCategories(removeItemFromList(categories, categoryToRemove))
+    setTransactions(removeCategoryFromTransactions(transactions, categoryToRemove));
+  }
 
   const value = {
     transactions,

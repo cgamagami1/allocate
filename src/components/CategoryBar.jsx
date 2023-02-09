@@ -3,9 +3,10 @@ import { useContext, useEffect, useState } from "react";
 import { BudgetContext } from "../context/BudgetContext";
 import useRipple from "../utils/useRipple";
 import { MenuContext } from "../context/MenuContext";
+import closeIcon from "../assets/close.svg";
 
 const CategoryBar = ({ category }) => {
-  const { transactions } = useContext(BudgetContext);
+  const { transactions, removeCategory } = useContext(BudgetContext);
   const { setCurrentMenu, setEditedItem } = useContext(MenuContext);
   const [isRippleVisible, ripplePosition, handleRipple] = useRipple();
   const { id, name, color, budget } = category;
@@ -18,14 +19,21 @@ const CategoryBar = ({ category }) => {
     setHasMounted(true);
   }, []);
 
-  const handleOnClick = (e) => {
+  const handleOnEdit = (e) => {
     handleRipple(e);
     setEditedItem(category);
     setCurrentMenu("category");
   }
+
+  const handleOnRemove = (e) => {
+    e.stopPropagation();
+    removeCategory(category);
+  }
   
   return (
-    <div className="relative py-2 overflow-hidden hover:cursor-pointer" onClick={handleOnClick}>
+    <div className="relative py-2 overflow-hidden hover:cursor-pointer close-icon-container" onClick={handleOnEdit}>
+      <img className="absolute top-0 right-0 hidden w-3 hover:cursor-pointer close-icon" src={closeIcon} alt="close icon" onClick={handleOnRemove} />
+
       <div className="flex items-center">
         <CategoryIcon category={category} />
         <div className="flex-grow h-8 p-1 ml-2 bg-gray-200 rounded-3xl">

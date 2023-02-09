@@ -7,12 +7,12 @@ const DoughnutChart = () => {
   const { categories } = useContext(BudgetContext);
 
   const chartData = {
-    labels: categories.map(category => category.name),
+    labels: categories.filter(category => category.id !== -1).map(category => category.name),
     datasets: [
       {
         label: "Budget",
-        data: categories.map(category => category.budget),
-        backgroundColor: categories.map(category => category.color),
+        data: categories.filter(category => category.id !== -1).map(category => category.budget),
+        backgroundColor: categories.filter(category => category.id !== -1).map(category => category.color),
       }
     ]
   };

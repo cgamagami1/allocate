@@ -10,7 +10,7 @@ const TransactionMenu = () => {
   const { categories, addTransaction, editTransaction } = useContext(BudgetContext);
 
   const [description, setDescription] = useState(editedItem?.description ?? "");
-  const [categoryId, setCategoryId] = useState(editedItem?.categoryId ?? categories[0].id);
+  const [categoryId, setCategoryId] = useState(editedItem?.categoryId ?? -1);
   const [date, setDate] = useState(editedItem?.date ?? DateTime.now());
   const [amount, setAmount] = useState(editedItem?.amount ?? 0);
 

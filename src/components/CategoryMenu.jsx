@@ -3,15 +3,15 @@ import { MenuContext } from "../context/MenuContext";
 import { BudgetContext } from "../context/BudgetContext";
 import MenuHeader from "./MenuHeader";
 import MenuLabel from "./MenuLabel";
-import IconSelector from "./IconSelector";
+import { colors, icons } from "../constants";
 
 const CategoryMenu = () => {
   const { setCurrentMenu, editedItem, setEditedItem, isEditing } = useContext(MenuContext);
   const { addCategory, editCategory } = useContext(BudgetContext);
   
   const [name, setName] = useState(editedItem?.name ?? "");
-  const [icon, setIcon] = useState();
-  const [color, setColor] = useState();
+  const [selectedColor, setSelectedColor] = useState(editedItem?.color ?? colors[0].color);
+  const [selectedIcon, setSelectedIcon] = useState(editedItem?.icon ?? icons[0].icon);
   const [budget, setBudget] = useState(editedItem?.budget ?? 0);
 
   const handleOnSubmit = (e) => {
@@ -19,8 +19,8 @@ const CategoryMenu = () => {
     if (!isEditing) {
       addCategory({
         name,
-        icon,
-        color,
+        icon: selectedIcon,
+        color: selectedColor,
         budget,
       });
       setCurrentMenu("none");
@@ -29,8 +29,8 @@ const CategoryMenu = () => {
       editCategory({
         ...editedItem,
         name,
-        icon,
-        color,
+        icon: selectedIcon,
+        color: selectedColor,
         budget,
       });
       setEditedItem(null);
@@ -44,8 +44,6 @@ const CategoryMenu = () => {
   }
 
   const handleOnNameChange = (e) => setName(e.target.value);
-  const handleOnIconChange = (e) => setIcon(e.target.value);
-  const handleOnColorChange = (e) => setColor(e.target.value);
   const handleOnBudgetChange = (e) => setBudget(e.target.value);
 
   return (
@@ -55,7 +53,23 @@ const CategoryMenu = () => {
       <MenuLabel title="Name:" />
       <input className="h-8 px-4 bg-gray-200 border border-gray-300 rounded-md" id="name" type="text" value={name} onChange={handleOnNameChange} required />
 
-      <IconSelector />
+      <MenuLabel title="Color:" />    
+      <div className="flex flex-wrap w-64 gap-3">
+        {colors.map(({ id, color }) => (
+          <div key={id} className={`w-8 h-8 hover:cursor-pointer rounded-md box-border border-black ${color === selectedColor ? "border-2" : ""}`} 
+            style={{ backgroundColor: color }} onClick={() => setSelectedColor(color)}></div>
+        ))}
+      </div>
+
+      <MenuLabel title="Icon:" />
+      <div className="flex flex-wrap w-64 gap-3">
+        {icons.map(({ id, icon, alt }) => (
+          <div key={id} className={`grid hover:cursor-pointer items-center justify-center w-8 h-8 rounded-md border-black ${icon === selectedIcon ? "border-2" : ""}`} 
+            style={{ backgroundColor: selectedColor }} onClick={() => setSelectedIcon(icon)}>
+            <img src={icon} alt={alt} className="w-4 h-4"></img>
+          </div>
+        ))}
+      </div>
 
       <MenuLabel title="Budget:" />
       <span className="text-lg font-semibold text-gray-500">$ </span>
