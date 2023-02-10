@@ -4,6 +4,7 @@ import { BudgetContext } from "../context/BudgetContext";
 import useRipple from "../utils/useRipple";
 import { MenuContext } from "../context/MenuContext";
 import closeIcon from "../assets/close.svg";
+import Ripple from "./Ripple";
 
 const CategoryBar = ({ category }) => {
   const { transactions, removeCategory } = useContext(BudgetContext);
@@ -12,7 +13,7 @@ const CategoryBar = ({ category }) => {
   const { id, name, color, budget } = category;
   const spent = transactions.reduce((acc, current) => current.categoryId === id ? acc + current.amount : acc, 0);
   const remaining = budget - spent;
-  const remainingPercentage = remaining / budget * 100;
+  const remainingPercentage = Math.max(0, remaining) / budget * 100;
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
@@ -42,8 +43,7 @@ const CategoryBar = ({ category }) => {
       </div>
       <p className="text-sm text-right text-gray-500 2xl:text-base"><span className="font-bold">{name}</span> | ${remaining} of ${budget} Left</p>
 
-      {isRippleVisible && <span className="absolute bg-[#00000033] translate-x-[-50%] translate-y-[-50%] rounded-full ripple-animation" 
-        style={{ left: ripplePosition.x + "px", top: ripplePosition.y + "px" }}></span>}
+      {isRippleVisible && <Ripple ripplePosition={ripplePosition} />}
     </div>
   );
 }

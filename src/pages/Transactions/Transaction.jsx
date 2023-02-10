@@ -4,6 +4,7 @@ import { BudgetContext } from "../../context/BudgetContext";
 import closeIcon from "../../assets/close.svg";
 import { MenuContext } from "../../context/MenuContext";
 import useRipple from "../../utils/useRipple";
+import Ripple from "../../components/Ripple";
 
 const Transaction = ({ transaction }) => {
   const { categories, removeTransaction } = useContext(BudgetContext);
@@ -44,8 +45,7 @@ const Transaction = ({ transaction }) => {
         <span className="text-3xl font-light text-gray-700">-${amount}</span>
       </div>
 
-      {isRippleVisible && <span className="absolute bg-[#00000033] translate-x-[-50%] translate-y-[-50%] rounded-full ripple-animation" 
-        style={{ left: ripplePosition.x + "px", top: ripplePosition.y + "px" }}></span>}
+      {isRippleVisible && <Ripple ripplePosition={ripplePosition} />}
     </div>
   );
 }

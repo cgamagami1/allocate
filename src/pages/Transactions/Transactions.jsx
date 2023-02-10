@@ -4,7 +4,7 @@ import CategoryList from "../../components/CategoryList";
 
 const Transactions = () => {
   return (
-    <div className="flex flex-col flex-grow md:pl-16 md:pr-32 lg:page-grid">
+    <div className="flex-grow md:px-16 page-grid">
       <HeaderBar title="Transactions" />
       <TransactionList />
       <CategoryList />

@@ -15,6 +15,7 @@
 
     *::-webkit-scrollbar {
         width: 14px;
+        height: 14px;
     }
 
     *::-webkit-scrollbar-track {
@@ -33,18 +34,20 @@
 
     .page-grid {
         display: grid;
-        grid-template-columns: 60% 40%;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: 5rem 1fr;
     }
 
-    .page-grid-mobile {
-        display: grid;
-        grid-template-columns: 100%;
-        grid-template-rows: 5rem 1fr;
-    }
-
-    .page-grid-mobile :nth-child(3) {
-        display: none;
+    @media (max-width: 1024px) {
+        .page-grid {
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-rows: 5rem 1fr;
+        }
+        
+        .page-grid > :nth-child(3) {
+            display: none;
+        }
     }
 
     .menu-shadow {
