@@ -1,22 +1,28 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BudgetContext } from "../../context/BudgetContext";
 import CategoryFilterButton from "./CategoryFilterButton";
 import Transaction from "./Transaction";
 
 const TransactionList = () => {
   const { transactions, categories } = useContext(BudgetContext);
+  const [categoryFilterId, setCategoryFilterId] = useState(null);
 
   return (
     <div className="px-8 mt-6 overflow-y-scroll perspective">
       <div className="sticky top-0 z-10 h-16 bg-white border-b border-gray-300 flex items-start gap-2 overflow-x-scroll">
-        <CategoryFilterButton isSelected={true} name="All" />
+        <CategoryFilterButton isSelected={categoryFilterId === null} name="All" handleOnClick={() => setCategoryFilterId(null)} />
         
-        {categories.filter(category => category.id !== -1).map(category => (
-          <CategoryFilterButton isSelected={false} name={category.name} />
+        {categories
+          .filter(category => category.id !== -1)
+          .map(category => (
+            <CategoryFilterButton key={category.id} isSelected={categoryFilterId === category.id} name={category.name} handleOnClick={() => setCategoryFilterId(category.id)} />
         ))}
       </div>
-      {transactions.sort((a, b) => b.date - a.date).map(transaction => (
-        <Transaction key={transaction.id} transaction={transaction} />
+      {transactions
+        .filter(transaction => categoryFilterId === null || transaction.categoryId === categoryFilterId)
+        .sort((a, b) => b.date - a.date)
+        .map(transaction => (
+          <Transaction key={transaction.id} transaction={transaction} />
       ))}
     </div>
   );

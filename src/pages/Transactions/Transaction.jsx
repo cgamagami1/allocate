@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import CategoryIcon from "../../components/CategoryIcon";
 import { BudgetContext } from "../../context/BudgetContext";
 import closeIcon from "../../assets/close.svg";
@@ -25,7 +25,7 @@ const Transaction = ({ transaction }) => {
   }
   
   return (
-    <div className="relative py-4 overflow-hidden border-b border-gray-300 tilt-animation close-icon-container hover:cursor-pointer" onClick={handleOnClick}>
+    <div className="relative py-4 overflow-hidden border-b border-gray-300 close-icon-container hover:cursor-pointer" onClick={handleOnClick}>
       <div className="flex items-start justify-between mb-2">
         <span className="block font-bold text-gray-500">{date.toLocaleString({ weekday: "short", year: "numeric", month: "short", day: "numeric" })}</span>
         <img className="hidden w-4 my-1 hover:cursor-pointer close-icon" src={closeIcon} alt="close icon" onClick={handleOnRemove} />

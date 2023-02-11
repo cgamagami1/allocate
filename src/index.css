@@ -32,9 +32,15 @@
         display: block;
     }
 
+    .nav-grid {
+        display: grid;
+        grid-template-columns: 20rem 1fr;
+        grid-template-rows: 100%;
+    }
+
     .page-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 50% 50%;
         grid-template-rows: 5rem 1fr;
     }
 
