@@ -1,17 +1,20 @@
 import CategoryIcon from "./CategoryIcon";
+import Ripple from "./Ripple";
+import useRipple from "../utils/useRipple";
 import { useContext, useEffect, useState } from "react";
 import { BudgetContext } from "../context/BudgetContext";
-import useRipple from "../utils/useRipple";
 import { MenuContext } from "../context/MenuContext";
+import { DateTime } from "luxon";
 import closeIcon from "../assets/close.svg";
-import Ripple from "./Ripple";
 
 const CategoryBar = ({ category }) => {
   const { transactions, removeCategory } = useContext(BudgetContext);
   const { setCurrentMenu, setEditedItem } = useContext(MenuContext);
   const [isRippleVisible, ripplePosition, handleRipple] = useRipple();
   const { id, name, color, budget } = category;
-  const spent = transactions.reduce((acc, current) => current.categoryId === id ? acc + current.amount : acc, 0);
+  const spent = transactions
+    .filter(transaction => transaction.date.month === DateTime.now().month && transaction.date.year === DateTime.now().year)
+    .reduce((acc, current) => current.categoryId === id ? acc + current.amount : acc, 0);
   const remaining = budget - spent;
   const remainingPercentage = Math.max(0, remaining) / budget * 100;
   const [hasMounted, setHasMounted] = useState(false);

@@ -100,4 +100,19 @@
             opacity: 0%;
         }
     }
+
+    .appear-animation {
+        animation: appear 0.25s ease-in-out;
+    }
+
+    @keyframes appear {
+        from {
+            transform: translateY(3rem);
+            opacity: 0%;
+        } 
+        to {
+            transform: translateY(0rem);
+            opacity: 100%;
+        }
+    }
 }

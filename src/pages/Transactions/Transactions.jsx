@@ -1,14 +1,15 @@
 import TransactionList from "./TransactionList";
 import HeaderBar from "../../components/HeaderBar";
 import CategoryList from "../../components/CategoryList";
+import Page from "../../components/Page";
 
 const Transactions = () => {
   return (
-    <div className="flex-grow md:px-16 page-grid">
+    <Page isGrid={true}>
       <HeaderBar title="Transactions" />
       <TransactionList />
       <CategoryList />
-    </div>
+    </Page>
   );
 }
 
