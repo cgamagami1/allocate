@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import AuthFormField from "../../components/AuthFormField";
 import logoRaisinBlack from "../../assets/logo-raisin-black.png";
 import Button from "../../components/Button";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
   const initialValues = { email: "", password: "" };
@@ -48,13 +49,13 @@ const SignIn = () => {
   return (
     <div className="h-screen w-screen grid items-center grid-cols-1 justify-center">
       <form className="flex flex-col m-auto w-[30rem] p-8 gap-6" onSubmit={handleOnSubmit}>
-        <img className="mb-8" src={logoRaisinBlack} alt="logo" />
-        <h2 className="m-auto text-3xl text-gray-800">Welcome back</h2>
-        <AuthFormField type="email" placeholder="Email" name="email" value={email} handleOnChange={handleOnChange} />
-        <AuthFormField type="password" placeholder="Password" name="password" value={password} handleOnChange={handleOnChange} />
+        <img className="mb-16" src={logoRaisinBlack} alt="logo" />
+        <AuthFormField type="email" placeholder="Email" name="email" value={email} onChange={handleOnChange} />
+        <AuthFormField type="password" placeholder="Password" name="password" value={password} onChange={handleOnChange} />
 
-        <Button title="Sign In" isSubmit={true} />
-        <span onClick={signInWithGooglePopup}>Sign in with google</span>
+        <Button title="Sign In" type="submit" styleType={"GREEN"} />
+        <Button title="Sign In With Google" styleType={"WHITE"} onClick={signInWithGooglePopup} />
+        <p className="text-center">Don't have an account? <Link className="text-green-600 font-bold hover:cursor-pointer" to="/signup">Sign Up</Link></p>
       </form>
     </div>
   );

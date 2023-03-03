@@ -2,6 +2,10 @@ import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from "
 import { useState } from "react";
 import { auth, googleProvider } from "../../utils/firebase-config";
 import { useNavigate } from "react-router-dom";
+import logoRaisinBlack from "../../assets/logo-raisin-black.png";
+import AuthFormField from "../../components/AuthFormField";
+import Button from "../../components/Button";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const initialValues = { email: "", password: "", name: "" };
@@ -44,14 +48,19 @@ const SignUp = () => {
   const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
 
   return (
-    <form onSubmit={handleOnSubmit}>
-      <h1>Sign up</h1>
-      <input type="email" placeholder="Your email" name="email" value={email} onChange={handleOnChange} />
-      <input type="password" placeholder="Your password" name="password" value={password} onChange={handleOnChange} />
-      <input type="text" placeholder="Your name" name="name" value={name} onChange={handleOnChange} />
-      <input type="submit" value="Submit" /> <br />
-      <span onClick={signInWithGooglePopup}>Sign up with google</span>
-    </form>
+    <div className="h-screen w-screen grid items-center grid-cols-1 justify-center">
+      <form className="flex flex-col m-auto w-[30rem] p-8 gap-6" onSubmit={handleOnSubmit}>
+        <img className="mb-16" src={logoRaisinBlack} alt="logo" />
+        <h2 className="text-center text-3xl">Create Account</h2>
+        <AuthFormField type="email" placeholder="Your email" name="email" value={email} onChange={handleOnChange} />
+        <AuthFormField type="password" placeholder="Your password" name="password" value={password} onChange={handleOnChange} />
+        <AuthFormField type="text" placeholder="Your name" name="name" value={name} onChange={handleOnChange} />
+
+        <Button title="Sign Up" type="submit" styleType={"GREEN"} />
+        <Button title="Sign Up With Google" styleType={"WHITE"} onClick={signInWithGooglePopup} />
+        <p className="text-center">Already have an account? <Link className="text-green-600 font-bold hover:cursor-pointer" to="/signin">Sign In</Link></p>
+      </form>
+    </div>
   );
 }
 
