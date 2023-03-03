@@ -115,4 +115,44 @@
             opacity: 100%;
         }
     }
+
+    .select-input-animation ~ .selection-bar {
+        visibility: visible;
+        animation: select-input 0.2s ease-in-out;
+    }
+
+    @keyframes select-input {
+        from {
+            width: 0%;
+        }
+        to {
+            width: 100%;
+        }
+    }
+    
+    .button-hover-animation {
+        position: relative;
+    }
+
+    .button-hover-animation::before {
+        position: absolute;
+        content: "";
+        background-color: rgba(0, 0, 0, 1);
+        transform: skewX(45deg);
+        translate: -10rem;
+        z-index: 15;
+        top: 0;
+        width: 30rem;
+        height: 30rem;
+        animation: button-hover .2s ease-out;
+    }
+
+    @keyframes button-hover {
+        from {
+            translate: -30rem;
+        }
+        to {
+            translate: -10rem;
+        }
+    }
 }

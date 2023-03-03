@@ -1,6 +1,6 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
 import { useState } from "react";
-import { auth } from "../../utils/firebase-config";
+import { auth, googleProvider } from "../../utils/firebase-config";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
@@ -9,15 +9,12 @@ const SignUp = () => {
   const { email, password, name } = formFields;
   const navigate = useNavigate();
 
-  const resetFormFields = () => {
-    setFormFields(initialValues);
-  }
-
-  const handleSubmit = async (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const { user } = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(user, { displayName: name });
       navigate("/");
     }
     catch (error) {
@@ -40,17 +37,20 @@ const SignUp = () => {
     resetFormFields();
   }
 
-  const handleOnChange = (e) => {
-    setFormFields({ ...formFields, [e.target.name]: e.target.value });
-  }
+  const resetFormFields = () => setFormFields(initialValues);
+
+  const handleOnChange = (e) => setFormFields({ ...formFields, [e.target.name]: e.target.value });
+
+  const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleOnSubmit}>
       <h1>Sign up</h1>
       <input type="email" placeholder="Your email" name="email" value={email} onChange={handleOnChange} />
       <input type="password" placeholder="Your password" name="password" value={password} onChange={handleOnChange} />
       <input type="text" placeholder="Your name" name="name" value={name} onChange={handleOnChange} />
-      <input type="submit" value="Submit" />
+      <input type="submit" value="Submit" /> <br />
+      <span onClick={signInWithGooglePopup}>Sign up with google</span>
     </form>
   );
 }

@@ -7,6 +7,7 @@ import Settings from "./pages/Settings/Settings";
 import MenuContainer from "./components/MenuContainer";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
+import SignOut from "./pages/SignOut/SignOut";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
       </Route>
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/signout" element={<SignOut />} />
     </Routes>
   )
 }

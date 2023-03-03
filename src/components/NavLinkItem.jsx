@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-const NavLinkItem = ({ icon, title, link}) => {
+const NavLinkItem = ({ icon, title, link }) => {
   const { pathname } = useLocation();
 
   return (
