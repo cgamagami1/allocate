@@ -17,7 +17,7 @@ const CategoryBar: FC<CategoryBarProps> = ({ category }) => {
   const [isRippleVisible, ripplePosition, handleRipple] = useRipple();
   const { id, name, color, budget } = category;
   const spent = transactions
-    .filter(transaction => transaction.date.month === DateTime.now().month && transaction.date.year === DateTime.now().year)
+    .filter(transaction => DateTime.fromISO(transaction.date).month === DateTime.now().month && DateTime.fromISO(transaction.date).year === DateTime.now().year)
     .reduce((acc, current) => current.categoryId === id ? acc + current.amount : acc, 0);
   const remaining = budget - spent;
   const remainingPercentage = Math.max(0, remaining) / budget * 100;

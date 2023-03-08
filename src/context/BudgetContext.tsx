@@ -1,12 +1,7 @@
-import { createContext, useState, FC, ReactNode } from "react";
-import { DateTime } from "luxon";
-import shoppingCart from "../assets/shopping-cart.svg";
-import house from "../assets/house.svg";
-import grid from "../assets/grid.svg";
-import bolt from "../assets/bolt.svg";
-import smiley from "../assets/smiley.svg";
-import car from "../assets/car.svg";
-import question from "../assets/question.svg";
+import { createContext, useState, FC, ReactNode, useEffect, useContext } from "react";
+import { UserContext } from "./UserContext";
+import { doc, setDoc, runTransaction, DocumentData } from "firebase/firestore";
+import { db } from "../utils/firebase-config";
 
 export type Category = {
   id: number;
@@ -20,14 +15,14 @@ export type Transaction = {
   id: number;
   description: string;
   categoryId: number;
-  date: DateTime;
+  date: string;
   amount: number;
 }
 
 export type BudgetItem = Transaction | Category;
 
 const addItemToList = <T extends BudgetItem>(list: T[], itemToAdd: T): T[] => {
-  const nextId = list.length;
+  const nextId = list.reduce((max, current) => Math.max(max, current.id), 0) + 1;
 
   return [...list, { ...itemToAdd, id: nextId, }];
 }
@@ -58,6 +53,7 @@ type BudgetContextValue = {
   addCategory(categoryToAdd: Category): void;
   editCategory(categoryToEdit: Category): void;
   removeCategory(categoryToRemove: Category): void;
+  isBudgetLoading: boolean;
 }
 
 export const BudgetContext = createContext<BudgetContextValue>({} as BudgetContextValue);
@@ -67,129 +63,54 @@ type BudgetProviderProps = {
 }
 
 export const BudgetProvider: FC<BudgetProviderProps> = ({ children }) => {
-  const [transactions, setTransactions ] = useState<Transaction[]>([
-    {
-      id: 0,
-      description: "Aldi",
-      categoryId: 0,
-      date: DateTime.now(),
-      amount: 34,
-    },
-    {
-      id: 1,
-      description: "Electric",
-      categoryId: 2,
-      date: DateTime.now(),
-      amount: 34,
-    },
-    {
-      id: 2,
-      description: "Housing",
-      categoryId: 1,
-      date: DateTime.now(),
-      amount: 340,
-    },
-    {
-      id: 3,
-      description: "Repairs",
-      categoryId: 3,
-      date: DateTime.now(),
-      amount: 34,
-    },
-    {
-      id: 4,
-      description: "Steam Game",
-      categoryId: 4,
-      date: DateTime.now(),
-      amount: 34,
-    },
-    {
-      id: 5,
-      description: "Whole foods",
-      categoryId: 0,
-      date: DateTime.now(),
-      amount: 34,
-    },
-    {
-      id: 6,
-      description: "Movie",
-      categoryId: 5,
-      date: DateTime.now(),
-      amount: 34,
-    },
-    {
-      id: 7,
-      description: "Movie",
-      categoryId: 5,
-      date: DateTime.now(),
-      amount: 34,
-    },
-    {
-      id: 8,
-      description: "Movie",
-      categoryId: 5,
-      date: DateTime.now(),
-      amount: 34,
-    },
-    {
-      id: 9,
-      description: "Movie",
-      categoryId: 5,
-      date: DateTime.now(),
-      amount: 34,
-    },
-  ]);
-  const [categories, setCategories] = useState<Category[]>([
-    {
-      id: -1,
-      name: "Uncategorized",
-      icon: question,
-      color: "#999999",
-      budget: 0,
-    },
-    {
-      id: 0,
-      name: "Groceries",
-      icon: shoppingCart,
-      color: "#db3535",
-      budget: 500
-    },
-    {
-      id: 1,
-      name: "Rent",
-      icon: house,
-      color: "#3588db",
-      budget: 500
-    },
-    {
-      id: 2,
-      name: "Utilities",
-      icon: bolt,
-      color: "#f79e0f",
-      budget: 700
-    },
-    {
-      id: 3,
-      name: "Transportation",
-      icon: car,
-      color: "#7571f8",
-      budget: 300
-    },
-    {
-      id: 4,
-      name: "Leisure",
-      icon: smiley,
-      color: "#bf35db",
-      budget: 200
-    },
-    {
-      id: 5,
-      name: "Misc",
-      icon: grid,
-      color: "#c41667",
-      budget: 500
-    },
-  ]);
+  
+  const { user } = useContext(UserContext);
+
+  const [transactions, setTransactions ] = useState<Transaction[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [isBudgetLoading, setIsBudgetLoading] = useState(true);
+
+  useEffect(() => {
+    const getBudgetData = async () => {
+      if (user && isBudgetLoading) {
+        const userDoc = doc(db, "users", user.uid);
+
+        const budgetData = await runTransaction(db, async (transaction): Promise<DocumentData> => {
+          const budgetResponse = await transaction.get(userDoc);
+
+          if (budgetResponse.exists()) return budgetResponse.data();
+          
+          const defaultDataResponse = await transaction.get(doc(db, "users", "DEFAULT_BUDGET"));
+
+          if (defaultDataResponse.exists()) {
+            await transaction.set(userDoc, { transactions: defaultDataResponse.data().transactions, categories: defaultDataResponse.data().categories });
+            return defaultDataResponse.data();
+          }
+          else {
+            throw new Error("Could not retreive default data");
+          }
+        });
+        
+        setTransactions(budgetData.transactions);
+        setCategories(budgetData.categories);
+        setIsBudgetLoading(false);
+      }
+    }
+
+    getBudgetData();
+  }, [user]);
+  
+  useEffect(() => {
+    const setBudgetData = async () => {
+      if (user && !isBudgetLoading) {
+        const userDoc = doc(db, "users", user.uid);
+        console.log(transactions);
+        await setDoc(userDoc, { transactions: transactions, categories: categories });
+      }
+    }
+
+    setBudgetData();
+  }, [transactions, categories]);
   
   const addTransaction = (transactionToAdd: Transaction): void => setTransactions(addItemToList<Transaction>(transactions, transactionToAdd));
 
@@ -215,6 +136,7 @@ export const BudgetProvider: FC<BudgetProviderProps> = ({ children }) => {
     addCategory,
     editCategory,
     removeCategory,
+    isBudgetLoading,
   };
   
   return (

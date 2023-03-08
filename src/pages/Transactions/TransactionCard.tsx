@@ -6,6 +6,7 @@ import { MenuContext, MENU_STATUS } from "../../context/MenuContext";
 import useRipple from "../../utils/useRipple";
 import Ripple from "../../components/Ripple";
 import { Transaction} from "../../context/BudgetContext";
+import { DateTime } from "luxon";
 
 type TransactionCardProps = {
   transaction: Transaction;
@@ -15,9 +16,12 @@ const TransactionCard: FC<TransactionCardProps> = ({ transaction }) => {
   const { categories, removeTransaction } = useContext(BudgetContext);
   const { setMenuStatus, setEditedItem } = useContext(MenuContext);
   const [isRippleVisible, ripplePosition, handleRipple] = useRipple();
-  const { description, categoryId, date, amount } = transaction;
-  const category = categories.find(category => category.id === categoryId) as Category;
+  const { description, categoryId, amount } = transaction;
+  const date = DateTime.fromISO(transaction.date);
   
+  const category = categories.find(category => category.id === categoryId);
+  if (!category) throw new Error("Transaction's categoryId could not be matched to any existing category id");
+
   const handleOnClick = (e: MouseEvent<HTMLDivElement>): void => {
     handleRipple(e);
     setEditedItem(transaction);

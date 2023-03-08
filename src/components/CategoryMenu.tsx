@@ -45,10 +45,10 @@ const CategoryMenu: FC = () => {
 
   return (
     <form className="p-8 bg-white menu-shadow rounded-xl tilt-animation" onSubmit={handleOnSubmit}>
-      <MenuHeader isEditing={isEditing} handleCloseMenu={handleCloseMenu} menuName="Category" />
+      <MenuHeader title={`${isEditing ? "Edit" : "Add"} Category`} handleCloseMenu={handleCloseMenu} />
 
       <MenuLabel title="Name:" htmlFor="name" />
-      <input className="h-8 px-4 bg-gray-200 border border-gray-300 rounded-md" id="name" type="text" value={name} onChange={handleOnNameChange} required />
+      <input className="h-8 px-4 bg-gray-200 border border-gray-300 rounded-md focus:outline-none" id="name" type="text" value={name} onChange={handleOnNameChange} required />
 
       <MenuLabel title="Color:" />    
       <div className="flex flex-wrap w-64 gap-3">
@@ -70,7 +70,7 @@ const CategoryMenu: FC = () => {
 
       <MenuLabel title="Budget:" htmlFor="" />
       <span className="text-lg font-semibold text-gray-500">$ </span>
-      <input className="w-24 h-8 pl-1 bg-gray-200 border border-gray-300 rounded-md" id="budget" type="number" min={0} value={budget} onChange={handleOnBudgetChange} />
+      <input className="w-24 h-8 pl-1 bg-gray-200 border border-gray-300 rounded-md focus:outline-none" id="budget" type="number" min={0} value={budget} onChange={handleOnBudgetChange} />
 
       <input className="block w-16 p-2 mt-4 ml-auto text-center text-white bg-green-500 rounded-lg hover:bg-green-600 hover:cursor-pointer" type="submit" value={isEditing ? "Edit" : "Add"} />
     </form>

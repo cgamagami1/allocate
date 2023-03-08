@@ -4,7 +4,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Transactions from "./pages/Transactions/Transactions";
 import News from "./pages/News/News";
 import Settings from "./pages/Settings/Settings";
-import MenuContainer from "./components/MenuContainer";
+import Main from "./components/Main";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import SignOut from "./pages/SignOut/SignOut";
@@ -13,7 +13,7 @@ import { FC } from "react";
 const App: FC = () => {
   return (
     <Routes>
-      <Route element={<MenuContainer />}>
+      <Route element={<Main />}>
         <Route path="/" element={<Navigation />}>
           <Route index element={<Dashboard />} />
           <Route path="transactions" element={<Transactions />} />

@@ -2,6 +2,7 @@ import { useContext, useState, FC } from "react";
 import { BudgetContext } from "../../context/BudgetContext";
 import CategoryFilterButton from "./CategoryFilterButton";
 import TransactionCard from "./TransactionCard";
+import { DateTime } from "luxon";
 
 const TransactionList: FC = () => {
   const { transactions, categories } = useContext(BudgetContext);
@@ -20,7 +21,7 @@ const TransactionList: FC = () => {
       </div>
       {transactions
         .filter(transaction => categoryFilterId === null || transaction.categoryId === categoryFilterId)
-        .sort((a, b) => Number(b.date) - Number(a.date))
+        .sort((a, b) => Number(DateTime.fromISO(b.date)) - Number(DateTime.fromISO(a.date)))
         .map(transaction => (
           <TransactionCard key={transaction.id} transaction={transaction} />
       ))}
