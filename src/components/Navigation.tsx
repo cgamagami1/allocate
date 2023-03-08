@@ -5,26 +5,13 @@ import NewsIcon from "./svgs/NewsIcon";
 import GearIcon from "./svgs/GearIcon";
 import PowerOffIcon from "./svgs/PowerOffIcon";
 import logoGreenIcon from "../assets/logo-green.png";
-import { useLocation, useNavigate, Outlet } from "react-router-dom";
-import { useContext, useEffect, FC } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../utils/firebase-config";
+import { useLocation, Outlet } from "react-router-dom";
+import { useContext, FC } from "react";
 import { UserContext } from "../context/UserContext";
 
 const Navigation: FC = () => {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
   const { user } = useContext(UserContext);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        navigate("/signin");
-      }
-    });
-
-    return unsubscribe;
-  }, []);
 
   return (
     <div className="flex h-screen pb-14 md:pb-0 md:pt-14 xl:pt-0 xl:nav-grid overflow-hidden">

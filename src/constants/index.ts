@@ -1,20 +1,3 @@
-import bolt from "../assets/bolt.svg";
-import car from "../assets/car.svg";
-import cookie from "../assets/cookie.svg";
-import dollarSign from "../assets/dollar-sign.svg";
-import droplet from "../assets/droplet.svg";
-import dumbbell from "../assets/dumbbell.svg";
-import fire from "../assets/fire.svg";
-import gamepad from "../assets/gamepad.svg";
-import grid from "../assets/grid.svg";
-import heart from "../assets/heart.svg";
-import house from "../assets/house.svg";
-import phone from "../assets/phone.svg";
-import shoppingCart from "../assets/shopping-cart.svg";
-import smiley from "../assets/smiley.svg";
-import tv from "../assets/tv.svg";
-import wifi from "../assets/wifi.svg";
-
 export const colors = [
   {
     id: 0,
@@ -69,82 +52,82 @@ export const colors = [
 export const icons = [
   {
     id: 0,
-    icon: bolt,
+    icon: "bolt.svg",
     alt: "bolt icon",
   },
   {
     id: 1,
-    icon: car,
+    icon: "car.svg",
     alt: "car icon",
   },
   {
     id: 2,
-    icon: cookie,
+    icon: "cookie.svg",
     alt: "cookie icon",
   },
   {
     id: 3,
-    icon: dollarSign,
+    icon: "dollar-sign.svg",
     alt: "dollar sign icon",
   },
   {
     id: 4,
-    icon: droplet,
+    icon: "droplet.svg",
     alt: "droplet icon",
   },
   {
     id: 5,
-    icon: dumbbell,
+    icon: "dumbbell.svg",
     alt: "dumbbell icon",
   },
   {
     id: 6,
-    icon: fire,
+    icon: "fire.svg",
     alt: "fire icon",
   },
   {
     id: 7,
-    icon: gamepad,
+    icon: "gamepad.svg",
     alt: "gamepad icon",
   },
   {
     id: 8,
-    icon: grid,
+    icon: "grid.svg",
     alt: "grid icon",
   },
   {
     id: 9,
-    icon: heart,
+    icon: "heart.svg",
     alt: "heart icon",
   },
   {
     id: 10,
-    icon: house,
+    icon: "house.svg",
     alt: "house icon",
   },
   {
     id: 11,
-    icon: phone,
+    icon: "phone.svg",
     alt: "phone icon",
   },
   {
     id: 12,
-    icon: shoppingCart,
+    icon: "shopping-cart.svg",
     alt: "shopping cart icon",
   },
   {
     id: 13,
-    icon: smiley,
+    icon: "smiley.svg",
     alt: "smiley icon",
   },
   {
     id: 14,
-    icon: tv,
+    icon: "tv.svg",
     alt: "tv icon",
   },
   {
     id: 15,
-    icon: wifi,
+    icon: "wifi.svg",
     alt: "wifi icon",
   },
 ];

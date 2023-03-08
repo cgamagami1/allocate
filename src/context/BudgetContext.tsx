@@ -104,7 +104,7 @@ export const BudgetProvider: FC<BudgetProviderProps> = ({ children }) => {
     const setBudgetData = async () => {
       if (user && !isBudgetLoading) {
         const userDoc = doc(db, "users", user.uid);
-        console.log(transactions);
+        
         await setDoc(userDoc, { transactions: transactions, categories: categories });
       }
     }

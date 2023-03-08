@@ -1,6 +1,6 @@
 import { useContext, FC, MouseEvent } from "react";
 import CategoryIcon from "../../components/CategoryIcon";
-import { BudgetContext, Category } from "../../context/BudgetContext";
+import { BudgetContext } from "../../context/BudgetContext";
 import closeIcon from "../../assets/close.svg";
 import { MenuContext, MENU_STATUS } from "../../context/MenuContext";
 import useRipple from "../../utils/useRipple";
