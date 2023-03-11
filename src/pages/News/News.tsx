@@ -4,21 +4,13 @@ import LoadingScreen from "../../components/LoadingScreen";
 import Page from "../../components/Page";
 import ArticleCard, { Article } from "./ArticleCard";
 
-const options = {
-	method: "GET",
-	headers: {
-		"X-RapidAPI-Key": "",
-		"X-RapidAPI-Host": "seeking-alpha.p.rapidapi.com"
-	}
-};
-
 const News: FC = () => {
   const [trendingArticles, setTrendingArticles] = useState<Article[] | null>(null);
 
   useEffect(() => {
     const getTrendingArticles = async () => {
-      const response = await fetch("https://seeking-alpha.p.rapidapi.com/articles/v2/list-trending?size=20", options);
-      const articleResponse = await response.json();
+      const response = await fetch("/.netlify/functions/getArticles");
+      const articleResponse = (await response.json()).data;
 
       setTrendingArticles(articleResponse.data as Article[]);
     }
