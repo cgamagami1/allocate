@@ -94,7 +94,7 @@ const Settings: FC = () => {
     <Page isGrid={false}>
       <HeaderBar title="Settings" />
       <div className="overflow-y-scroll">
-        <form className="flex flex-col w-screen md:w-[30rem] p-8 gap-6" onSubmit={handleOnSubmit}>
+        <form className="flex flex-col max-w-[30rem] p-8 gap-6" onSubmit={handleOnSubmit}>
           <label className="text-2xl font-bold" htmlFor="name">Name:</label>
           <AuthFormField type="text" placeholder="New name" name="name" value={name} onChange={handleOnNameChange} />
 
